@@ -1,0 +1,120 @@
+        <!-- Login Background -->
+            <!-- For best results use an image with a resolution of 2560x400 pixels (prefer a blurred image for smaller file size) -->
+            <img src="assets/img/placeholders/headers/login_header.jpg" alt="Login Background" class="full-bg animation-pulseSlow">
+        <!-- END Login Background -->
+
+        <!-- Login Container -->
+        <div id="login-container" class="animation-fadeIn">
+            <!-- Login Title -->
+            <div class="login-title text-center">
+                <h1><i class="gi gi-flash"></i> <strong>Prakash Print</strong><br></h1>
+            </div>
+            <!-- END Login Title -->
+
+            <!-- Login Block -->
+            <div class="block push-bit">
+                <!-- Login Form -->
+                <div *ngIf="notifyMessage" class="alert alert-success">
+                  {{notifyMessage}}
+                </div>
+                <div *ngIf="errors.length > 0" class="alert alert-danger">
+                  <p *ngFor="let error of errors">
+                    {{error.detail}}
+                  </p>
+                </div>
+                <form  method="post" id="form-login" class="form-horizontal form-bordered form-control-borderless" [formGroup]="loginForm" (ngSubmit)="login()">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="gi gi-envelope"></i></span>
+                                <input type="text" id="login-email" formControlName="email" name="login-email" class="form-control input-lg" placeholder="Email">
+                            <div *ngIf="isInvalidForm('email')" class="alert alert-danger">
+                                <div *ngIf="isRequired('email')">
+                                  Email is required.
+                                </div>
+
+                                  <div *ngIf="loginForm.controls['email'].errors.pattern">
+                                    Must be valid email format!
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+                                <input type="password" id="login-password" formControlName="password" name="login-password" class="form-control input-lg" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-actions">
+                     
+                        <div class="col-xs-12 text-left">
+                            <button type="submit"  [disabled]="!loginForm.valid"   class="btn btn-sm btn-success"><i class="fa fa-angle-right"></i> Login</button>
+                        </div>
+                    </div>
+                  
+                </form>
+                <!-- END Login Form -->
+
+
+            </div>
+            <!-- END Login Block -->
+
+       
+        </div>
+        <!-- END Login Container -->
+<!--
+<section id="login">
+  <div class="bwm-form">
+    <div class="row">
+      <div class="col-md-5">
+        <h1 class="page-title">Login</h1>
+        <div *ngIf="notifyMessage" class="alert alert-success">
+          {{notifyMessage}}
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email"
+                   class="form-control"
+                   id="email"
+                   formControlName="email">
+            <div *ngIf="isInvalidForm('email')"
+                 class="alert alert-danger">
+
+              <div *ngIf="isRequired('email')">
+                Email is required.
+              </div>
+
+              <div *ngIf="loginForm.controls['email'].errors.pattern">
+                Must be valid email format!
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password"
+                   class="form-control"
+                   id="password"
+                   formControlName="password">
+          </div>
+          <button [disabled]="!loginForm.valid" type="submit" class="btn btn-bwm">Submit</button>
+        </form>
+        <div *ngIf="errors.length > 0" class="alert alert-danger">
+          <p *ngFor="let error of errors">
+            {{error.detail}}
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 ml-auto">
+        <div class="image-container">
+          <h2 class="catchphrase">Hundreds of awesome places in reach of few clicks.</h2>
+          <img src="assets/images/login-image.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+-->

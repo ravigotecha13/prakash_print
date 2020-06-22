@@ -1,0 +1,52 @@
+<ul class="breadcrumb breadcrumb-top">
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/teacherstudent/division">Manage Division</a></li>
+    <li>Add Division</li>
+</ul>
+
+<div class="block">
+    <!-- Horizontal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="#" routerLink="/teacherstudent/division"  class="btn btn-sm btn-primary" ><i class="fa fa-angle-left"></i></a>
+        </div>
+      <h2><strong>Add </strong> Division</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+    <!-- Horizontal Form Content -->
+    <form #DivisionForm="ngForm" >
+      <div class="form-group col-md-12">
+            <label for="category" class="col-md-3">Name</label>
+            <div class="col-md-6">
+
+              <input type="text" name="name" [(ngModel)]="newDivision.name" class="form-control" required>
+
+            </div>
+      </div>
+      <div class="form-group col-md-12">
+            <label for="category" class="col-md-3">Sub Name</label>
+            <div class="col-md-6">
+
+              <input type="text" name="name" [(ngModel)]="newDivision.subname" class="form-control">
+
+            </div>
+      </div>
+
+        <div class="form-group form-actions">
+            <div class="col-md-6 col-md-offset-3">
+                  <button (click)="createDivision()"
+                        [disabled]="!DivisionForm.form.valid || !newDivision.name || disableloading==true"
+                        type="button"
+                        class="btn btn-sm btn-primary" name="Submit"><span *ngIf="disableloading"> Loading...</span> Submit
+                </button>&nbsp; &nbsp;
+               
+                <button type="reset" name="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+

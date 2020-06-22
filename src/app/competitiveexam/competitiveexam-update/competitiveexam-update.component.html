@@ -1,0 +1,67 @@
+<ul class="breadcrumb breadcrumb-top">
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/competitiveexam">Manage Competitive Exam</a></li>
+    <li>Edit Competitive Exam</li>
+</ul>
+
+<div class="block">
+    <!-- Horizontal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="#" routerLink="/competitiveexam"  class="btn btn-sm btn-primary" ><i class="fa fa-angle-left"></i></a>
+        </div>
+      <h2><strong>Edit </strong> Competitive Exam</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+    <!-- Horizontal Form Content -->
+    <form #CompetitiveExamForm="ngForm" >
+        
+    <div class="form-group col-md-12">
+        <label for="category" class="col-md-3">Material Type</label>
+        <div class="col-md-6">
+
+        <select class="form-control" id="type" name="type" [(ngModel)]="competitiveexam.type" required>
+          <option value="study">Study Material</option>
+          <option value="video">Video Material</option>
+
+        </select>
+        </div>
+      </div>
+     <div class="form-group col-md-12" *ngIf="competitiveexam.type == 'video'">
+            <label for="category" class="col-md-3">URL</label>
+            <div class="col-md-6">
+
+              <input type="text" name="url" id="url" [(ngModel)]="competitiveexam.url" class="form-control">
+
+            </div>
+      </div>
+
+        <div class="form-group col-md-12" *ngIf="competitiveexam.type == 'study'">
+            <label class="col-md-3 control-label" for="example-hf-email">Upload File</label>
+            <div class="col-md-6">
+              <input type="file" accept='application/pdf' name="tmpimage"  [(ngModel)]="competitiveexam.image"  (change)='getimageFile($event)'>
+              <a href="{{base64textString}}" >{{competitiveexam.file}}</a>
+<!--                <bwm-image-upload (imageUploaded)="handleImageUpload($event)"
+                                (imageError)="handleImageError()">
+              </bwm-image-upload>
+ -->            </div>
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-md-6 col-md-offset-3">
+                  <button (click)="updateCompetitiveExam()"
+                        [disabled]="!CompetitiveExamForm.form.valid || disableloading==true"
+                        type="button"
+                        class="btn btn-sm btn-primary" name="Submit"><span *ngIf="disableloading"> Loading...</span> Submit
+                </button>&nbsp; &nbsp;
+               
+                <button type="reset" name="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+            </div>
+        </div>
+    </form>
+    </div></div>
+    <!-- END Horizontal Form Content -->
+</div>
+<!-- END Horizontal Form Block -->
+
+    <!-- END Horizontal Form Title -->

@@ -1,0 +1,51 @@
+<ul class="breadcrumb breadcrumb-top">
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/newslive">Manage News Live</a></li>
+    <li>Add News Live</li>
+</ul>
+
+<div class="block">
+    <!-- Horizontal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="#" routerLink="/newslive"  class="btn btn-sm btn-primary" ><i class="fa fa-angle-left"></i></a>
+        </div>
+      <h2><strong>Add </strong> News Live</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+    <!-- Horizontal Form Content -->
+    <form #NewsliveForm="ngForm" >
+      <div class="form-group col-md-12">
+            <label class="col-md-3">City</label>
+            <div class="col-md-6">
+
+            <select class="form-control text-capitalize" id="city" name="city" [(ngModel)]="newNewslive.city">
+              <option *ngFor="let citys of citylist" [ngValue]="citys._id"> {{citys.name}} </option>
+
+            </select>
+            </div>
+          </div>
+        <div class="form-group col-md-12">
+            <label for="category" class="col-md-3">URL</label>
+            <div class="col-md-6">
+
+              <input type="text" name="url" [(ngModel)]="newNewslive.url" class="form-control" required>
+
+            </div>
+          </div>
+        <div class="form-group form-actions">
+            <div class="col-md-6 col-md-offset-3">
+                  <button (click)="createNewslive()"
+                        [disabled]="!NewsliveForm.form.valid || disableloading==true"
+                        type="button"
+                        class="btn btn-sm btn-primary" name="Submit"><span  class="fa fa-spinner fa-spin" *ngIf="disableloading==true"></span> Submit
+                </button>&nbsp; &nbsp;
+               
+                <button type="reset" name="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+            </div>
+        </div>
+   </form>
+    </div></div>
+    <!-- END Horizontal Form Content -->
+</div>

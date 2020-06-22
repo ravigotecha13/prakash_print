@@ -1,0 +1,111 @@
+<ul class="breadcrumb breadcrumb-top">
+    <li><a routerLink="./home">Home</a></li>
+    <li><a routerLink="#/blood">Manage Blood Donor</a></li>
+    <li>Add Blood Donor</li>
+</ul>
+
+<div class="block">
+    <!-- Horizontal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="#" routerLink="/blood"  class="btn btn-sm btn-primary" ><i class="fa fa-angle-left"></i></a>
+        </div>
+      <h2><strong>Add </strong> Blood Donor</h2>
+    </div>
+    <div class="row" *ngIf="csvfileupload == false">
+      <div class="col-md-8 col-md-offset-2">
+    <!-- Horizontal Form Content -->
+    <form #BloodForm="ngForm" >
+      <div class="form-group col-md-12">
+            <label class="col-md-3">City</label>
+            <div class="col-md-6">
+
+            <select class="form-control" id="city" name="city" [(ngModel)]="newBlood.city">
+              <option *ngFor="let citys of citylist" [ngValue]="citys._id"> {{citys.name}} </option>
+
+            </select>
+            </div>
+      </div>
+      <div class="form-group col-md-12">
+            <label class="col-md-3">Blood Group</label>
+            <div class="col-md-6">
+
+            <select class="form-control" id="type" name="type" [(ngModel)]="newBlood.type">
+              <option *ngFor="let group of bloodgroup"> {{group}} </option>
+            </select>
+            </div>
+      </div>
+        <div class="form-group col-md-12">
+            <label for="category" class="col-md-3">Name</label>
+            <div class="col-md-6">
+
+              <input type="text" name="name" [(ngModel)]="newBlood.name" class="form-control" required>
+
+            </div>
+          </div>
+        <div class="form-group col-md-12">
+            <label for="category" class="col-md-3">Number</label>
+            <div class="col-md-6">
+
+              <input type="text" name="number" [(ngModel)]="newBlood.number" class="form-control" required>
+
+            </div>
+          </div>
+        <div class="form-group form-actions">
+            <div class="col-md-6 col-md-offset-3">
+                  <button (click)="createBlood()"
+                        [disabled]="!BloodForm.form.valid || disableloading==true"
+                        type="button"
+                        class="btn btn-sm btn-primary" name="Submit"><span *ngIf="disableloading"> Loading...</span> Submit
+                </button>&nbsp; &nbsp;
+               
+                <button type="reset" name="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+            </div>
+        </div>
+   </form>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="csvfileupload == true">
+        <div class="col-md-12 text-right">
+          <a href="assets/Blood_Format.csv">Download Format</a>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+
+      <!-- Horizontal Form Content -->
+      <form #BloodForm="ngForm" >
+        <div class="form-group col-md-12">
+            <label class="col-md-3">City</label>
+            <div class="col-md-6">
+
+            <select class="form-control" id="city1" name="city1" [(ngModel)]="newBlood1.city1">
+              <option *ngFor="let citys of citylist" [ngValue]="citys._id"> {{citys.name}} </option>
+
+            </select>
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="file" class="col-md-3">Upload Csv File</label>
+            <div class="col-md-6">
+
+              <input type="file" name="name" [(ngModel)]="newBlood1.csvfile"  (change)='getcsvFile($event)' class="form-control" required>
+
+            </div>
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-md-6 col-md-offset-3">
+                  <button (click)="createBlood1()"
+                        [disabled]="!BloodForm.form.valid || disableloading==true"
+                        type="button"
+                        class="btn btn-sm btn-primary" name="Submit"><span *ngIf="disableloading"> Loading...</span> Submit
+                </button>&nbsp; &nbsp;
+               
+                <button type="reset" name="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+            </div>
+        </div>
+
+      </form>
+      </div>
+    </div>
+  </div>
+    <!-- END Horizontal Form Content -->

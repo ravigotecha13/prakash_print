@@ -1,0 +1,51 @@
+<ul class="breadcrumb breadcrumb-top">
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/newschannel">Manage News Channel</a></li>
+    <li>Add News Channel</li>
+</ul>
+
+<div class="block">
+    <!-- Horizontal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="#" routerLink="/newschannel"  class="btn btn-sm btn-primary" ><i class="fa fa-angle-left"></i></a>
+        </div>
+      <h2><strong>Add </strong> News Channel</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+    <!-- Horizontal Form Content -->
+    <form #NewschannelForm="ngForm" >
+      <div class="form-group col-md-12">
+            <label for="category" class="col-md-3">URL</label>
+            <div class="col-md-6">
+
+              <input type="text" name="url" [(ngModel)]="newNewschannel.url" class="form-control">
+
+            </div>
+          </div>
+        <div class="form-group col-md-12">
+            <label class="col-md-3 control-label" for="example-hf-email">Upload Image</label>
+            <div class="col-md-6">
+              <input type="file" accept='image/*' name="tmpimage" [(ngModel)]="newNewschannel.tmpimage" (change)='getimageFile($event)'>
+              <img  src={{base64textString}} alt="" id="img" height="100px" width="100px">
+            </div>
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-md-6 col-md-offset-3">
+                  <button (click)="createNewschannel()"
+                        [disabled]="!NewschannelForm.form.valid || !newNewschannel.image || disableloading==true"
+                        type="button"
+                        class="btn btn-sm btn-primary" name="Submit"><span *ngIf="disableloading"> Loading...</span> Submit
+                </button>&nbsp; &nbsp;
+
+               
+                <button type="reset" name="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+            </div>
+        </div>
+    </form>
+    </div></div>
+    <!-- END Horizontal Form Content -->
+</div>
+<!-- END Horizontal Form Block -->
+

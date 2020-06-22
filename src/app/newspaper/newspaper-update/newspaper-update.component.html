@@ -1,0 +1,189 @@
+<ul class="breadcrumb breadcrumb-top">
+    <li><a routerLink="./home">Home</a></li>
+    <li><a routerLink="./newspaper">Manage Newspaper</a></li>
+    <li>Add Newspaper</li>
+</ul>
+
+<div class="block">
+    <!-- Horizontal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="#" routerLink="/newspaper"  class="btn btn-sm btn-primary" ><i class="fa fa-angle-left"></i></a>
+        </div>
+      <h2><strong>Add </strong> Newspaper</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+    <!-- Horizontal Form Content -->
+    <form #NewspaperForm="ngForm" >
+        
+
+      <div class="form-group col-md-12">
+            <label for="category" class="col-md-3">Agency</label>
+            <div class="col-md-6">
+
+            <select class="form-control" id="agency" [(ngModel)]="newspaper.agency"  name="agency" required>
+              <option *ngFor="let agency of newspaperagency"> {{agency}} </option>
+
+            </select>
+            </div>
+          </div>
+        <div class="form-group col-md-12">
+            <label class="col-md-3 control-label" for="example-hf-email">Upload Image</label>
+            <div class="col-md-6">
+<!--               <input type="file" accept='image/*' name="tmpimage"  [(ngModel)]="newspaper.image"  (change)='getimageFile($event)'> -->
+              <img  src={{base64textString}} alt="" id="img" height="100px" width="100px">
+<!--                <bwm-image-upload (imageUploaded)="handleImageUpload($event)"
+                                (imageError)="handleImageError()">
+              </bwm-image-upload>
+ -->            </div>
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-md-6 col-md-offset-3">
+                  <button (click)="updateNewspaper()"
+                        [disabled]="!NewspaperForm.form.valid "
+                        type="button"
+                        class="btn btn-sm btn-primary" name="Submit">Submit
+                </button>&nbsp; &nbsp;
+               
+                <button type="reset" name="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+            </div>
+        </div>
+<!--          <div *ngIf="errors.length > 0" class="alert alert-danger">
+          <p *ngFor="let error of errors">
+            {{error.detail}}
+          </p>
+        </div>
+ -->    </form>
+    </div></div>
+    <!-- END Horizontal Form Content -->
+</div>
+<!-- END Horizontal Form Block -->
+
+    <!-- END Horizontal Form Title -->
+
+<!-- 
+<section id="newRental">
+  <div class="bwm-form">
+    <div class="row">
+      <div class="col-md-5">
+        <h1 class="page-title">Create Rental</h1>
+        <form #rentalForm="ngForm">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text"
+                   class="form-control"
+                   id="title"
+                   name="title"
+                   [(ngModel)]="newRental.title"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text"
+                   class="form-control"
+                   id="city"
+                   name="city"
+                   [(ngModel)]="newRental.city"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label for="street">Street</label>
+            <input type="text"
+                   class="form-control"
+                   id="street"
+                   name="street"
+                   [(ngModel)]="newRental.street"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+
+            <select class="form-control"
+                    id="category"
+                    name="category"
+                    [(ngModel)]="newRental.category"
+                    required>
+              <option *ngFor="let category of rentalCategories"> {{category}} </option>
+
+            </select>
+          </div>
+
+          <div class="form-group">
+            <bwm-image-upload (imageUploaded)="handleImageUpload($event)"
+                              (imageError)="handleImageError()">
+            </bwm-image-upload>
+          </div>
+
+          <div class="form-group">
+            <label for="bedrooms">Bedrooms</label>
+            <input type="number"
+                   class="form-control"
+                   id="bedrooms"
+                   name="bedrooms"
+                   [(ngModel)]="newRental.bedrooms"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea rows="5"
+                      type="text"
+                      class="form-control"
+                      id="description"
+                      name="description"
+                      [(ngModel)]="newRental.description"
+                      required>
+            </textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="dailyRate">Daily Rate</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">$</div>
+              </div>
+              <input type="number"
+                     name="dailyRate"
+                     class="form-control"
+                     id="dailyRate"
+                     name="dailyRate"
+                     [(ngModel)]="newRental.dailyRate"
+                     required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="shared">Shared</label>
+            <input type="checkbox"
+                   class="form-control"
+                   id="shared"
+                   name="shared"
+                   [(ngModel)]="newRental.shared"
+                   required>
+          </div>
+          <button (click)="createRental()"
+                  [disabled]="!rentalForm.form.valid || !newRental.image"
+                  type="button"
+                  class="btn btn-bwm">Submit
+          </button>
+        </form>
+        <div *ngIf="errors.length > 0" class="alert alert-danger">
+          <p *ngFor="let error of errors">
+            {{error.detail}}
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 ml-auto">
+        <div class="image-container">
+          <h2 class="catchphrase">Hundreds of awesome places in reach of few clicks.</h2>
+          <img src="assets/images/create-rental.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ -->

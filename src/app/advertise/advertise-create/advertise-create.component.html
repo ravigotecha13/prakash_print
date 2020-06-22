@@ -1,0 +1,115 @@
+<ul class="breadcrumb breadcrumb-top">
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/advertise">Manage Advertise</a></li>
+    <li>Add Advertise</li>
+</ul>
+
+<div class="block">
+    <!-- Horizontal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="#" routerLink="/advertise"  class="btn btn-sm btn-primary" ><i class="fa fa-angle-left"></i></a>
+        </div>
+      <h2><strong>Add </strong> Advertise</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+    <!-- Horizontal Form Content -->
+    <form #AvertiseForm="ngForm" >
+        <div class="form-group col-md-12">
+            <label for="category" class="col-md-12">Name</label>
+            <div class="col-md-12">
+              <input type="text" name="name" [(ngModel)]="newAdvertise.name" class="form-control" required>
+
+            </div>
+          </div>
+
+        <input type="hidden" name="section" [(ngModel)]="newAdvertise.section" value="slider">
+        <div class="form-group col-md-12" *ngIf="newAdvertise.section == 'slider'">
+            <label class="col-md-12 control-label">Select Page</label>
+            <div class="col-md-12">
+            <select class="form-control  text-capitalize" id="pagetype" name="pagetype" [(ngModel)]="newAdvertise.pagetype">
+                <option value="Home">Home</option>
+<!--                 <option value="Blood Donor">Blood Donor</option> -->
+<!--                 <option value="Newspaper">Newspaper</option>
+                <option value="History">History</option>
+                <option value="Live Tv">Live Tv</option>
+ --><!--                 <option value="Live Tv">Live Tv</option>
+                <option value="Blood Donor">Blood Donor</option>
+                <option value="Newspaper">Newspaper</option> -->
+                <option value="Directory">Directory</option>
+                <option value="Exit">Exit</option>
+
+            </select>
+            </div>
+        </div>
+         <div class="form-group col-md-12" *ngIf="newAdvertise.pagetype == 'Directory'">
+                <label class="col-md-12 control-label">Select City</label>
+                <div class="col-md-12 ">
+
+                <select class="form-control text-capitalize" id="city" name="city" [(ngModel)]="newAdvertise.city">
+                  <option *ngFor="let citys of citylist" [ngValue]="citys._id"> {{citys.name}} </option>
+
+                </select>
+                </div>
+          </div>
+          <div class="form-group col-md-12" *ngIf="newAdvertise.pagetype == 'Directory'">
+                <label class="col-md-12 control-label">Enter URL</label>
+                <div class="col-md-12 ">
+                  <input type="text" name="name" [(ngModel)]="newAdvertise.url" class="form-control">
+                </div>
+
+          </div>
+          <div class="form-group col-md-12" *ngIf="newAdvertise.pagetype == 'Directory'">
+                <label class="col-md-12 control-label">Select Category</label>
+                <div class="col-md-12 ">
+
+                <select class="form-control text-capitalize" id="category" name="category" [(ngModel)]="newAdvertise.category">
+                  <option value="All">All</option>
+                  <option *ngFor="let category of categorylist" [ngValue]="category._id"> {{category.name}} </option>
+
+                </select>
+                </div>
+          </div>
+     
+        <div class="form-group col-md-12" *ngIf="newAdvertise.section == 'slider'">
+            <label class="col-md-12 control-label">Select Slider Image</label>
+            <div class="col-md-12">
+              <input type="file" accept='image/*' name="tmpimage" [(ngModel)]="newAdvertise.tmpimage" (change)='getimageFile($event,"sliderimage")'>
+              <img  src={{base64textString2}} alt="" *ngIf="base64textString2 !=''"  id="img" height="100px" width="100px">
+            </div>
+        </div>
+        <div class="form-group col-md-6" *ngIf="newAdvertise.section == 'left-bottom'">
+            <label class="col-md-12 control-label">Left Image</label>
+            <div class="col-md-12">
+              <input type="file" accept='image/*' name="tmpimage" [(ngModel)]="newAdvertise.tmpimage" (change)='getimageFile($event,"leftimage")'>
+              <img  src={{base64textString}} alt="" *ngIf="base64textString !=''"  id="img" height="100px" width="100px">
+            </div>
+        </div>
+        <div class="form-group col-md-6" *ngIf="newAdvertise.section == 'left-bottom'">
+            <label class="col-md-12 control-label">Bottom Image</label>
+            <div class="col-md-12">
+              <input type="file" accept='image/*' name="tmpimage1" [(ngModel)]="newAdvertise.tmpimage1" (change)='getimageFile($event,"bottomimage")'>
+              <img  src={{base64textString1}} alt="" *ngIf="base64textString1 !=''" id="img" height="100px" width="100px">
+            </div>
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-md-6 col-md-offset-3">
+            <br/><br/>
+                  <button (click)="createAdvertise()"
+                        [disabled]="!AvertiseForm.form.valid || !newAdvertise.leftimage  && !newAdvertise.sliderimage || disableloading==true"
+                        type="button"
+                        class="btn btn-sm btn-primary" name="Submit"><span *ngIf="disableloading"> Loading...</span> Submit
+                </button>&nbsp; &nbsp;
+
+               
+<!--                 <button type="reset" name="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button> -->
+            <br/><br/>
+            </div>
+        </div>
+    </form>
+    </div></div>
+    <!-- END Horizontal Form Content -->
+</div>
+<!-- END Horizontal Form Block -->
+

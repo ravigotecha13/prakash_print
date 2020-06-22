@@ -1,0 +1,51 @@
+<ul class="breadcrumb breadcrumb-top">
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/socialtalents">Manage Social Talents</a></li>
+    <li>Add Social Talents</li>
+</ul>
+
+<div class="block">
+    <!-- Horizontal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="#" routerLink="/socialtalents"  class="btn btn-sm btn-primary" ><i class="fa fa-angle-left"></i></a>
+        </div>
+      <h2><strong>Add </strong> Social Talents</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+    <!-- Horizontal Form Content -->
+    <form #SocialtalentsForm="ngForm" >
+      <div class="form-group col-md-12">
+            <label for="category" class="col-md-3">URL</label>
+            <div class="col-md-6">
+
+              <input type="text" name="url" [(ngModel)]="newSocialtalents.url" class="form-control">
+
+            </div>
+          </div>
+        <div class="form-group col-md-12">
+            <label class="col-md-3 control-label" for="example-hf-email">Upload Image</label>
+            <div class="col-md-6">
+              <input type="file" accept='image/*' name="tmpimage" [(ngModel)]="newSocialtalents.tmpimage" (change)='getimageFile($event)'>
+              <img  src={{base64textString}} alt="" id="img" height="100px" width="100px">
+            </div>
+        </div>
+        <div class="form-group form-actions">
+            <div class="col-md-6 col-md-offset-3">
+                  <button (click)="createSocialtalents()"
+                        [disabled]="!SocialtalentsForm.form.valid || !newSocialtalents.image || disableloading==true"
+                        type="button"
+                        class="btn btn-sm btn-primary" name="Submit"><span *ngIf="disableloading"> Loading...</span> Submit
+                </button>&nbsp; &nbsp;
+
+               
+                <button type="reset" name="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+            </div>
+        </div>
+    </form>
+    </div></div>
+    <!-- END Horizontal Form Content -->
+</div>
+<!-- END Horizontal Form Block -->
+

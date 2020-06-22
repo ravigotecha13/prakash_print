@@ -1,0 +1,24 @@
+<div *ngIf="!auth.isAuthenticated()">
+		  <router-outlet> </router-outlet>
+
+</div>		  
+<div id="page-wrapper" class="page-loading" *ngIf="auth.isAuthenticated()">
+    <div id="page-container" class="header-fixed-top sidebar-partial sidebar-visible-lg sidebar-no-animations ">
+	<bwm-sidebar> </bwm-sidebar>
+
+	<div id="main-container">
+
+	<bwm-header > </bwm-header>
+
+     <!-- Page content -->
+    <div id="page-content">
+
+
+		<!-- <div class="container"> -->
+		  <router-outlet> </router-outlet>
+		<!-- </div>
+		 -->
+	</div>
+	</div>
+
+ </div>

@@ -1,0 +1,93 @@
+    <!-- Table Responsive Header -->
+  
+    <ul class="breadcrumb breadcrumb-top">
+        <li><a routerLink="/home">Home</a></li>
+        <li>Social Talents</li>
+    </ul>
+    <!-- END Table Responsive Header -->
+
+    <!-- Responsive Full Block -->
+    <div class="block">
+        <!-- Responsive Full Title -->
+        <div class="block-title">
+            <div class="block-options pull-right">
+                <a href="#" routerLink="/socialtalents/new"  class="btn  btn-sm btn-primary" ><i class="fa fa-plus"></i></a>
+                       
+            </div>
+            <h2><strong>Manage </strong> Social Talents</h2>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-vcenter table-striped">
+                <thead>
+                    <tr>
+                        <th>URL</th>
+                        <th>Image</th>
+                        <th style="width: 200px;" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let news of socialtalentss; let i = index">
+                        <td>{{news.url}}</td>
+                        <td><a href="assets/public/{{news.image}}" target="_blank"><img src="assets/public/{{news.image}}" height="100px" width="100px"></a></td>
+                        <td class="text-center">
+                            <div class="btn-group btn-group-xs" *ngIf="newsDeleteIndex !== i">
+                                <a href="javascript:void(0)"  routerLink="/socialtalents/{{news._id}}/edit" title="Edit" class="btn btn-default"><i class="fa fa-pencil"></i></a>
+                                <a href="javascript:void(0)" (click)="newsDeleteIndex = i" title="Delete" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                                  
+
+                            </div>
+                              <div *ngIf="newsDeleteIndex === i">
+                              <span *ngIf="deleteRecord == true"  class="delete-spin"><i class="fa fa-spinner fa-spin fa-3x"></i></span>
+                                <p class="confirm-message">Do you confirm delete?</p>
+                                <button (click)="deleteNews(news._id)"
+                                         class="btn btn-success">Yes</button>
+                                <button (click)="newsDeleteIndex = undefined"
+                                         class="btn btn-danger">No</button>
+                              </div>
+                        </td>
+                    </tr>
+                     <tr *ngIf="listalert !=''">
+
+                        <td colspan="4" align="center">{{listalert}} </td>
+                    </tr>
+                   
+                </tbody>
+            </table>
+        </div>
+        <div class="row" *ngIf="totalpages !==0">
+        <div class="col-sm-5 hidden-xs">
+
+        </div>
+            <div class="col-sm-7 col-xs-12 clearfix">
+                <div class="dataTables_paginate paging_bootstrap">
+                    <ul class="pagination pagination-sm remove-margin">
+                          <li  class="prev" [ngClass]="{'disabled': currentPage == 1}">
+                              <a href="javascript:void(0)" (click)="setPage(currentPage - 1)"  ><i class="fa fa-chevron-left"></i> 
+                            </a>               
+                        </li>
+                       <li *ngFor="let pages of arrayTwo(currentPage,totalpages);let i = index" [ngClass]="{'active': pages == currentPage}">
+                        <a href="javascript:void(0)" (click)="setPage(pages)"  data-paging-options="pages" *ngIf="pages !='...'">{{pages}}</a>
+                        <span href="javascript:void(0)"  data-paging-options="pages" *ngIf="pages =='...'">{{pages}}</span>
+                        </li>
+ 
+                        <li class="next"  [ngClass]="{'disabled': currentPage == totalpages || totalpages == 0}"><a href="javascript:void(0)" (click)="setPage(currentPage + 1)"> <i class="fa fa-chevron-right"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- END Responsive Full Content -->
+    </div>
+    <!-- END Responsive Full Block -->
+
+
+<!-- <section id="rentalListing">
+  <h1 class="page-title">Your Home All Around the World</h1>
+  <div class="row">
+    <div class='col-md-3 col-xs-6' *ngFor="let rental of rentals">
+      <bwm-rental-list-item [rental]="rental"> </bwm-rental-list-item>
+    </div>
+  </div>
+</section>
+ -->

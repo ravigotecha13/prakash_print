@@ -1,0 +1,46 @@
+<ul class="breadcrumb breadcrumb-top">
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/city">Manage City</a></li>
+    <li>Add City</li>
+</ul>
+
+<div class="block">
+    <!-- Horizontal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="#" routerLink="/city"  class="btn btn-sm btn-primary" ><i class="fa fa-angle-left"></i></a>
+        </div>
+      <h2><strong>Add </strong> City</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+    <!-- Horizontal Form Content -->
+    <form #CityForm="ngForm" >
+      <div class="form-group col-md-12">
+            <label for="category" class="col-md-3">Name</label>
+            <div class="col-md-6">
+
+              <input type="text" name="name" [(ngModel)]="newCity.name" class="form-control" required>
+
+            </div>
+          </div>
+
+        <div class="form-group form-actions">
+            <div class="col-md-6 col-md-offset-3">
+           
+                  <button (click)="createCity()"
+                        [disabled]="!CityForm.form.valid || disableloading==true"
+                        type="button"
+                        class="btn btn-sm btn-info "   name="Submit">
+                        <span  class="fa fa-spinner fa-spin" *ngIf="disableloading==true"></span>
+                        Submit
+                </button>&nbsp; &nbsp;
+               
+                <button type="reset" name="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+        <br/><br/>
+            </div>
+        </div>
+</form>
+    </div></div>
+    <!-- END Horizontal Form Content -->
+</div>

@@ -1,0 +1,59 @@
+<ul class="breadcrumb breadcrumb-top">
+    <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/videoads">Manage Video Ads</a></li>
+    <li>Add Video Ads</li>
+</ul>
+
+<div class="block">
+    <!-- Horizontal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="#" routerLink="/videoads"  class="btn btn-sm btn-primary" ><i class="fa fa-angle-left"></i></a>
+        </div>
+      <h2><strong>Add </strong> Video Ads</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+    <!-- Horizontal Form Content -->
+    <form #VideoadsForm="ngForm" >
+      <div class="form-group col-md-12">
+            <label class="col-md-3">City</label>
+            <div class="col-md-6">
+
+            <select class="form-control text-capitalize" id="city" name="city" [(ngModel)]="newVideoads.city">
+              <option *ngFor="let citys of citylist" [ngValue]="citys._id"> {{citys.name}} </option>
+
+            </select>
+            </div>
+          </div>
+        <div class="form-group col-md-12">
+            <label for="category" class="col-md-3">Name</label>
+            <div class="col-md-6">
+
+              <input type="text" name="name" [(ngModel)]="newVideoads.name" class="form-control" required>
+
+            </div>
+          </div>
+        <div class="form-group col-md-12">
+            <label for="category" class="col-md-3">URL</label>
+            <div class="col-md-6">
+
+              <input type="text" name="url" [(ngModel)]="newVideoads.url" class="form-control" required>
+
+            </div>
+          </div>
+        <div class="form-group form-actions">
+            <div class="col-md-6 col-md-offset-3">
+                  <button (click)="createVideoads()"
+                        [disabled]="!VideoadsForm.form.valid || disableloading==true"
+                        type="button"
+                        class="btn btn-sm btn-primary" name="Submit"><span  class="fa fa-spinner fa-spin" *ngIf="disableloading==true"></span> Submit
+                </button>&nbsp; &nbsp;
+               
+                <button type="reset" name="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+            </div>
+        </div>
+   </form>
+    </div></div>
+    <!-- END Horizontal Form Content -->
+</div>

@@ -1,0 +1,130 @@
+<ul class="breadcrumb breadcrumb-top">
+    <li><a routerLink="./home">Home</a></li>
+    <li><a routerLink="#/directory">Manage Directory</a></li>
+    <li>Add Directory</li>
+</ul>
+
+<div class="block">
+    <!-- Horizontal Form Title -->
+    <div class="block-title">
+        <div class="block-options pull-right">
+            <a href="#" routerLink="/directory"  class="btn btn-sm btn-primary" ><i class="fa fa-angle-left"></i></a>
+            <a href="javscript:void(0);" (click)="csvformchange()"   class="btn btn-sm btn-primary" ><i class="fa fa-file"></i></a>
+        </div>
+      <h2><strong>Add </strong> Directory</h2>
+    </div>
+    <div class="row" *ngIf="csvfileupload == false">
+      <div class="col-md-8 col-md-offset-2">
+    <!-- Horizontal Form Content -->
+    <form #DirectoryForm="ngForm" >
+      <div class="form-group col-md-12">
+            <label class="col-md-3">City</label>
+            <div class="col-md-6">
+
+            <select class="form-control text-capitalize" id="city" name="city" [(ngModel)]="newDirectory.city">
+              <option *ngFor="let citys of citylist" [ngValue]="citys._id"> {{citys.name}} </option>
+
+            </select>
+            </div>
+      </div>
+      <div class="form-group col-md-12">
+            <label class="col-md-3">Category</label>
+            <div class="col-md-6">
+
+            <select class="form-control text-capitalize" id="category" name="category" [(ngModel)]="newDirectory.category">
+              <option *ngFor="let category of categorylist" [ngValue]="category._id"> {{category.name}} </option>
+
+            </select>
+            </div>
+      </div>
+        <div class="form-group col-md-12">
+            <label for="category" class="col-md-3">Name</label>
+            <div class="col-md-6">
+
+              <input type="text" name="name" [(ngModel)]="newDirectory.name" class="form-control text-capitalize" required>
+
+            </div>
+          </div>
+        <div class="form-group col-md-12">
+            <label for="category" class="col-md-3">Number</label>
+            <div class="col-md-6">
+
+              <input type="text" name="number" [(ngModel)]="newDirectory.number" class="form-control" required>
+
+            </div>
+          </div>
+        <div class="form-group col-md-12">
+            <label for="category" class="col-md-3">Address</label>
+            <div class="col-md-6">
+
+              <input type="text" name="address" [(ngModel)]="newDirectory.address" class="form-control">
+
+            </div>
+          </div>
+        <div class="form-group form-actions">
+            <div class="col-md-6 col-md-offset-3">
+                  <button (click)="createDirectory()"
+                        [disabled]="!DirectoryForm.form.valid || disableloading==true"
+                        type="button"
+                        class="btn btn-sm btn-primary" name="Submit"><span *ngIf="disableloading"> Loading...</span> Submit
+                </button>&nbsp; &nbsp;
+               
+                <button type="reset" name="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+            </div>
+        </div>
+   </form>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="csvfileupload == true">
+        <div class="col-md-12 text-right">
+          <a href="assets/Directory_Format.xlsx">Download Format</a>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+
+      <!-- Horizontal Form Content -->
+      <form #DirectoryForm="ngForm" >
+        <div class="form-group col-md-12">
+            <label class="col-md-3">City</label>
+            <div class="col-md-6">
+
+            <select class="form-control text-capitalize" id="city1" name="city1" [(ngModel)]="newDirectory1.city1">
+              <option *ngFor="let citys of citylist" [ngValue]="citys._id"> {{citys.name}} </option>
+
+            </select>
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <label for="file" class="col-md-3">Upload Csv File</label>
+            <div class="col-md-6">
+<!-- 
+              <input type="file" name="name" [(ngModel)]="newDirectory1.csvfile"  (change)='getcsvFile($event)' class="form-control" required>
+               -->
+               <input  (change)="fileChange($event)"  type="file"  class="form-control text-capitalize"  id="inputGroupFile03"  name="tmpimage" [(ngModel)]="newDirectory1.csvfile" aria-describedby="inputGroupFileAddon03" required>
+
+            </div>
+        </div>
+        <div class="form-group form-actions">
+
+            <div class="col-md-6 col-md-offset-3">
+
+          <div class="progress progress-striped active"  *ngIf="uploadedPercentage != 0">
+
+              <div class="progress-bar progress-bar-info" role="progressbar" attr.aria-valuenow="{{uploadedPercentage}}" [style.width]="uploadedPercentage + '%'"   aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" >{{uploadedPercentage}}%</div>
+          </div>
+
+                  <button (click)="createDirectory1()"
+                        [disabled]="!DirectoryForm.form.valid || disableloading==true"
+                        type="button"
+                        class="btn btn-sm btn-primary" name="Submit"><span *ngIf="disableloading"> Loading...</span> Submit
+                </button>&nbsp; &nbsp;
+               
+                <button type="reset" name="reset" class="btn btn-sm btn-warning"><i class="fa fa-repeat"></i> Reset</button>
+            </div>
+        </div>
+
+      </form>
+      </div>
+    </div>
+  </div>
+    <!-- END Horizontal Form Content -->
